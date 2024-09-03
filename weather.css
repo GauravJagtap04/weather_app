@@ -6,7 +6,7 @@
 
 ::-webkit-scrollbar {
     width: 8px;
-    background-color: transparent;
+    background-color: black;
 }
 
 ::-webkit-scrollbar-button {
@@ -37,8 +37,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 #main {
@@ -57,11 +56,15 @@ body {
     position: relative;
     width: 80%;
     height: 80vh;
+<<<<<<< HEAD
     background-image: url('https://gauravjagtap04.github.io/weather_app/images/background.png');
+=======
+    background-image: url('/images/background.png');
+>>>>>>> c89b3a9 (list not scrollable bug fix)
     background-size: cover;
     border-radius: 20px 0 20px 0;
     box-shadow: 0px 0px 20px rgb(103, 95, 129);
-    overflow: hidden;
+    overflow-x: hidden;
     min-width: 700px;
 }
 
@@ -141,6 +144,7 @@ body {
     float: right;
     width: 30%;
     height: 100%;
+    overflow: hidden;
 }
 
 #right-container {
@@ -226,6 +230,22 @@ button:hover #right-arrow {
 
 #recent-search {
     padding: 7%;
+    height: 75%;
+    width: 85%;
+    overflow: hidden;
+}
+
+#list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#list::-webkit-scrollbar {
+    display: none;
 }
 
 .recent-location {
@@ -240,6 +260,7 @@ button:hover #right-arrow {
     padding: 2.5px 10px;
     margin: 6px auto;
     transition-duration: .2s;
+    width: 85%;
 }
 
 .recent-location:hover {
@@ -247,5 +268,9 @@ button:hover #right-arrow {
     transition-duration: .2s;
     background-color: var(--background);
     color: var(--text-color);
+<<<<<<< HEAD
     
 }
+=======
+}
+>>>>>>> c89b3a9 (list not scrollable bug fix)
