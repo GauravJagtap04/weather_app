@@ -1,0 +1,251 @@
+:root {
+    --text-color: white;
+    --main-background: linear-gradient(45deg, #f1b4a2, #afbbbc, #686082);
+    --background: black;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-button {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #948292;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #ceb3cb;
+}
+
+::scrollbar
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#main {
+    color: var(--text-color);
+    background: var(--main-background);
+    font-family: poppins;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -3;
+}
+
+#container {
+    position: relative;
+    width: 80%;
+    height: 80vh;
+    background-image: url(/images/background.png);
+    background-size: cover;
+    border-radius: 20px 0 20px 0;
+    box-shadow: 0px 0px 20px rgb(103, 95, 129);
+    overflow: hidden;
+    min-width: 700px;
+}
+
+#results {
+    float: left;
+    width: 70%;
+    height: 100%;
+}
+
+#weather-logo {
+    padding: 60px;
+    scale: 300%;
+    color: var(--text-color)
+}
+
+#weather-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 5vh 1.2vw;
+    position: absolute;
+    bottom: 0;
+    width: 65%;
+    color: var(--text-color);
+}
+
+#temperature {
+    font-weight: 700;
+    font-size: 4.5rem;
+    text-align: center;
+    margin: auto;
+}
+
+#location {
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-align: center;
+    margin: auto;
+}
+
+.location-searched {
+    font-size: 2.3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    font-family: 'Montserrat';
+}
+
+.location-country {
+    padding-right: 10px;
+    display: inline-flex;
+}
+
+.location-date {
+    padding-left: 10px;
+    display: inline-flex;
+}
+
+#description {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    margin: auto;
+}
+
+.desc-main {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-family: 'Montserrat';
+}
+
+.desc-sub {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+#search-container {
+    float: right;
+    width: 30%;
+    height: 100%;
+}
+
+#right-container {
+    background: rgba(184, 184, 184, 0.25);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7px );
+    -webkit-backdrop-filter: blur( 7px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    width: 100%;
+    height: 100%;
+}
+
+#input-container {
+    width: fit-content;
+    margin: auto;
+    padding: 5% 7%;
+}
+
+::placeholder {
+    color: var(--text-color);
+    opacity: 70%;
+}
+
+input {
+    border: 1px solid white;
+    outline: none;
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--text-color);
+    font-family: Poppins;
+    font-size: 1rem;
+    padding: 3px;
+    width: 77%;
+}
+
+span {
+    padding: 0;
+    margin: 0;
+    color: #4e4e4e;
+    opacity: 80%;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    width: 100%;
+    border: 0;
+    border-top: 1px solid rgb(65, 65, 65);
+    margin: 3px 0;
+    padding: 5px 0;
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 16%;
+    font-weight: 600;
+    background-color: var(--background);
+    transition-duration: .3s;
+    overflow: visible;
+}
+
+#right-arrow {
+    color: var(--text-color);
+    transition-duration: .3s;
+}
+
+button:hover {
+    scale: 40%;
+    background-color: transparent;
+    transition-duration: .3s;
+}
+
+button:hover #right-arrow {
+    scale: 500%;
+    color: black;
+    transition-duration: .3s;
+}
+
+#recent-search {
+    padding: 7%;
+}
+
+.recent-location {
+    background: rgba(255, 255, 255, 0.123);
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+
+    color: var(--background);
+    padding: 2.5px 10px;
+    margin: 6px auto;
+    transition-duration: .2s;
+}
+
+.recent-location:hover {
+    scale: 106%;
+    transition-duration: .2s;
+    background-color: var(--background);
+    color: var(--text-color);
+    
+}
