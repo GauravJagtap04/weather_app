@@ -284,6 +284,7 @@ button:hover #right-arrow {
         grid-template-columns: repeat(2, 1fr);
         padding: 15px 10px;
         width: fit-content;
+        gap: 5px;
     }
     
     #temperature {
@@ -296,7 +297,7 @@ button:hover #right-arrow {
     }
     
     #location {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         font-weight: 600;
         text-align: center;
         margin: auto;
@@ -305,10 +306,11 @@ button:hover #right-arrow {
     }
     
     .location-searched {
-        font-size: 2.3rem;
+        font-size: 2rem;
         font-weight: 800;
         letter-spacing: 2px;
         font-family: 'Montserrat';
+        padding: 5px 0;
     }
     
     .location-country {
@@ -327,12 +329,13 @@ button:hover #right-arrow {
     }
     
     .desc-main {
-        font-size: 1.8rem;
+        font-size: 1.3rem;
         font-weight: 800;
+        padding: 8px 0;
     }
     
     .desc-sub {
-        font-size: 1.3rem;
+        font-size: .8rem;
         font-weight: 600;
     }
 
