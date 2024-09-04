@@ -60,8 +60,9 @@ body {
     background-size: cover;
     border-radius: 20px 0 20px 0;
     box-shadow: 0px 0px 20px rgb(103, 95, 129);
-    overflow-x: hidden;
+    overflow: hidden;
     min-width: 700px;
+    min-height: 300px;
 }
 
 #results {
