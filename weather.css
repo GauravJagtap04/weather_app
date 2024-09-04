@@ -373,6 +373,10 @@ button:hover #right-arrow {
     #list {
         height: 70%;
     }
+
+    .recent-location {
+        width: 80%;
+    }
 }
 
 
