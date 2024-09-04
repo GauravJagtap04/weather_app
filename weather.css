@@ -50,6 +50,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: -3;
+    overflow: hidden;
 }
 
 #container {
@@ -61,8 +62,6 @@ body {
     border-radius: 20px 0 20px 0;
     box-shadow: 0px 0px 20px rgb(103, 95, 129);
     overflow: hidden;
-    min-width: 700px;
-    min-height: 300px;
 }
 
 #results {
@@ -265,9 +264,92 @@ button:hover #right-arrow {
     transition-duration: .2s;
     background-color: var(--background);
     color: var(--text-color);
-<<<<<<< HEAD
+}
+
+@media only screen and (max-width: 600px) {
+    #container {
+        width: 90%;
+        position: relative;
+    }
+
+    #results {
+        float: none;
+        display: block;
+        height: 50%;
+        width: 100%;
+    }
+
+    #weather-info {
+        position: relative;
+        width: 100%;
+        padding: 15px;
+        max-width: fit-content;
+        margin-top: 8%;
+    }
+
+    #search-container {
+        float: none;
+        height: 50%;
+        width: 100%;
+    }
+
+    #right-container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    #list {
+        height: 75%;
+    }
+
+    #temperature {
+        font-weight: 700;
+        font-size: 2.8rem;
+        text-align: center;
+        margin: auto;
+    }
     
+    #location {
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        margin: auto;
+    }
+    
+    .location-searched {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-family: 'Montserrat';
+    }
+    
+    .location-country {
+        padding-right: 10px;
+        display: inline-flex;
+    }
+    
+    .location-date {
+        padding-left: 10px;
+        display: inline-flex;
+    }
+    
+    #description {
+        font-size: 1rem;
+        font-weight: 600;
+        text-align: center;
+        margin: auto;
+    }
+    
+    .desc-main {
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        font-family: 'Montserrat';
+    }
+    
+    .desc-sub {
+        font-size: 1rem;
+        font-weight: 600;
+    }
 }
-=======
-}
->>>>>>> c89b3a9 (list not scrollable bug fix)
