@@ -293,6 +293,7 @@ button:hover #right-arrow {
         text-align: center;
         margin: auto;
         grid-area: 2;
+        height: 90px;
         grid-row: 1;
     }
     
@@ -356,7 +357,6 @@ button:hover #right-arrow {
         position: absolute;
         width: 57%;
         max-height: 50%;
-        min-height: 20%;
         top: 0;
         right: 0;
         padding-top: 10px;
