@@ -1,4 +1,4 @@
-const apiKey = 'f5149f257c40256f290b73d9f830fa24';  // Replace with your actual OpenWeatherMap API key
+const apiKey = 'f5149f257c40256f290b73d9f830fa24';
 
 const date = new Date();
 const formattedDate = date.toLocaleDateString('en-GB', {
@@ -10,7 +10,6 @@ async function fetchWeatherData(city) {
     const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
     
     try {
-        // First get the city's coordinates (latitude, longitude)
         const geocodeResponse = await fetch(geocodeUrl);
         const geocodeData = await geocodeResponse.json();
         if (geocodeData.length === 0) {
@@ -20,19 +19,16 @@ async function fetchWeatherData(city) {
 
         const { lat, lon } = geocodeData[0];
         
-        // Now use the coordinates to get weather information
         const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
         const weatherResponse = await fetch(weatherUrl);
         const weatherData = await weatherResponse.json();
         
-        // Display data on the webpage
         displayWeatherData(weatherData, city);
     } catch (error) {
         console.error("Error fetching weather data: ", error);
     }
 }
 
-// Display weather data
 function displayWeatherData(data, city) {
     const temperature = Math.round(data.main.temp) + '°C';
     const description = data.weather[0].description;
@@ -46,7 +42,6 @@ function displayWeatherData(data, city) {
     document.querySelector('.location-date').textContent = formattedDate;
 }
 
-// Event listener for the search button
 document.getElementById('submit-btn').addEventListener('click', () => {
     const city = document.getElementById('location-input').value;
     if (city) {
