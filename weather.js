@@ -1,11 +1,22 @@
 const apiKey = 'f5149f257c40256f290b73d9f830fa24';
 
+
+
+const tempOutput = document.getElementById('temperature');
+const locationSearched = document.querySelector('.location-searched');
+const locationCountry = document.querySelector('.location-country');
+const locationDate = document.querySelector('.location-date');
+const descMain = document.querySelector('.desc-main');
+const descSub = document.querySelector('.desc-sub');
+
+const locationInput = document.getElementById('location-input');
+
+
 const date = new Date();
 const formattedDate = date.toLocaleDateString('en-GB', {
   month: 'short', day: '2-digit'
 }).replace(/ /g, ' ');
 
-// Fetch weather data based on the city
 async function fetchWeatherData(city) {
     const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
     
@@ -34,16 +45,18 @@ function displayWeatherData(data, city) {
     const description = data.weather[0].description;
     const country = data.sys.country;
 
-    document.getElementById('temperature').textContent = temperature;
-    document.querySelector('.location-searched').textContent = city.charAt(0).toUpperCase() + city.slice(1);
-    document.querySelector('.location-country').textContent = country;
-    document.querySelector('.desc-main').textContent = data.weather[0].main;
-    document.querySelector('.desc-sub').textContent = description;
-    document.querySelector('.location-date').textContent = formattedDate;
+    tempOutput.textContent = temperature;
+    locationSearched.textContent = city.charAt(0).toUpperCase() + city.slice(1);
+    locationCountry.textContent = country;
+    locationDate.textContent = formattedDate;
+    descMain.textContent = data.weather[0].main;
+    descSub.textContent = description;
 }
 
+
+
 document.getElementById('submit-btn').addEventListener('click', () => {
-    const city = document.getElementById('location-input').value;
+    const city = locationInput.value;
     if (city) {
         fetchWeatherData(city);
     }
@@ -51,39 +64,13 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 
 
 
-// const apiKey = 'f5149f257c40256f290b73d9f830fa24';
-// const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
-// const locationInput = document.getElementById("location-input");
-// const submitBtn = document.getElementById("submit-btn");
-// const temperature = document.getElementById("temperature");
-// const locationSearched = document.querySelector(".location-searched");
-// const locationCountry = document.querySelector(".location-country");
-// const locationDate = document.querySelector(".location-date");
-// const descMain = document.querySelector(".desc-main");
-// const descSub = document.querySelector(".desc-sub");
-// const recentSearch = document.getElementById("recent-search");
-// const recentSearchList = document.getElementById("list");
 
-// submitBtn.addEventListener('click', () => {
-//     const location = locationInput.value;
+let currentLocation = {};
 
-//     if (location) {
-//         fetchWeather(location);
-//     }
-// });
 
-// function fetchWeather(location) {
-//     const url = '${apiUrl}?q=${location}&appid=${apiKey}&units=metric';
+const recentLocationValue = recentLocation.valuex;
 
-//     fetch(url)
-//         .then(response => response.json())
-//         .then(data => {
-//             locationSearched.textContent = data.name;
-//             temperature.textContent = '${Math.round(data.main.temp)}°C';
-//             descMain.textContent = 'data.weather[0].description';
-//         })
-//         .catch(error => {
-//             console.error('Error fetching weather data: ', error);
-//         });
-// }
+recentLocation.addEventListener('click', () => {
+    console.log(recentLocation);
+})
