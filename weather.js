@@ -1,4 +1,4 @@
-const apiKey = 'f5149f257c40256f290b73d9f830fa24';
+const apiKey = config.SECRET_KEY;
 
 
 
