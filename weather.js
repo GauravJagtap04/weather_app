@@ -1,16 +1,17 @@
 const apiKey = config.SECRET_KEY;
 
-
-
 const tempOutput = document.getElementById('temperature');
 const locationSearched = document.querySelector('.location-searched');
 const locationCountry = document.querySelector('.location-country');
 const locationDate = document.querySelector('.location-date');
 const descMain = document.querySelector('.desc-main');
 const descSub = document.querySelector('.desc-sub');
-
 const locationInput = document.getElementById('location-input');
+const submitBtn = document.getElementById("submit-btn");
+const recentSearch = document.getElementById("recent-search");
 
+const locationData = JSON.parse(localStorage.getItem("data")) || [];
+let currentLocation = {};
 
 const date = new Date();
 const formattedDate = date.toLocaleDateString('en-GB', {
@@ -25,7 +26,7 @@ async function fetchWeatherData(city) {
         const geocodeData = await geocodeResponse.json();
         if (geocodeData.length === 0) {
             alert("City not found.");
-            return;
+            return false;
         }
 
         const { lat, lon } = geocodeData[0];
@@ -35,8 +36,10 @@ async function fetchWeatherData(city) {
         const weatherData = await weatherResponse.json();
         
         displayWeatherData(weatherData, city);
+        return true;
     } catch (error) {
         console.error("Error fetching weather data: ", error);
+        return false;
     }
 }
 
@@ -55,22 +58,98 @@ function displayWeatherData(data, city) {
 
 
 
-document.getElementById('submit-btn').addEventListener('click', () => {
+
+const addRecentLocation = () => {
+    const locationValue = locationInput.value.trim();
+
+    
+    const locationObj = {
+        id: `${locationValue.toLowerCase().split(" ").join("-")}-${Date.now()}`,
+        locVal: locationValue.charAt(0).toUpperCase() + locationValue.slice(1),
+    };
+
+    const dataArrIndex = locationData.findIndex((item) => item.id === currentLocation.id);
+
+    if (dataArrIndex === -1) {
+        locationData.unshift(locationObj);
+    } else {
+        locationData[dataArrIndex] = locationObj;
+    }
+    
+    localStorage.setItem("data", JSON.stringify(locationData));
+    updateOutputRecentLocation();
+
+    locationInput.value = "";
+};
+
+const updateOutputRecentLocation = () => {    
+    if (locationData.length >= 1) {
+        recentSearch.style.display = 'block'; // Make it visible if there's data
+        recentSearch.innerHTML = `
+            <span>
+                Recent search<hr>
+            </span>
+            <ul id="list"></ul>
+        `;
+
+        const list = document.getElementById("list");
+        
+        locationData.forEach(
+            ({id, locVal}) => {
+                list.innerHTML += `
+                    <li id="${id}" class="recent-location translate" style="position: relative;">
+                        ${locVal} 
+                        <img title="Remove" id="delete-location" onclick="removeLocation('${id}')" src="images/x.png" alt="close-icon" width="20px" height="20px" style="padding: 0 5px; margin: 0; position: absolute; right: 0%; top: 50%">
+                    </li>
+                `;
+            }
+        );
+    } else {
+        recentSearch.style.display = 'none'; // Hide if no data
+        recentSearch.innerHTML = ""; // Clear content just in case
+        
+    }
+};
+
+
+function removeLocation(locationId) {
+    const dataArrIndex = locationData.findIndex(
+        (item) => item.id === locationId
+    );
+
+    if (dataArrIndex !== -1) {
+        locationData.splice(dataArrIndex, 1);
+        document.getElementById(locationId).remove();
+        localStorage.setItem("data", JSON.stringify(locationData));
+    }
+
+    updateOutputRecentLocation();
+};
+
+
+
+const submit = async () => {
     const city = locationInput.value;
     if (city) {
-        fetchWeatherData(city);
+        const cityFound = await fetchWeatherData(city);
+        if (cityFound) {
+            addRecentLocation();
+            fetchWeatherData(city);
+        }
     }
+
+    updateOutputRecentLocation();
+};
+
+submitBtn.addEventListener('click', () => {
+    submit();
 });
 
+locationInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        submit();
+    }   
+});
 
-
-
-
-let currentLocation = {};
-
-
-const recentLocationValue = recentLocation.valuex;
-
-recentLocation.addEventListener('click', () => {
-    console.log(recentLocation);
-})
+updateOutputRecentLocation();

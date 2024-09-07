@@ -266,6 +266,16 @@ button:hover #right-arrow {
     color: var(--text-color);
 }
 
+.recent-location:hover > img {
+    filter: invert();
+}
+
+.recent-location.translate > img {
+    transform: translateY(-50%);
+}
+
+.delete-location
+
 @media only screen and (max-width: 600px) {
     #container {
         height: 65vh;
