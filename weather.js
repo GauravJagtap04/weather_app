@@ -11,6 +11,7 @@ const submitBtn = document.getElementById("submit-btn");
 const recentSearch = document.getElementById("recent-search");
 const searchContainer = document.getElementById("search-container");
 const rightContainer = document.getElementById("right-container");
+const weatherInfo = document.getElementById("weather-info");
 
 const locationData = JSON.parse(localStorage.getItem("data")) || [];
 let currentLocation = {};
@@ -112,6 +113,7 @@ const updateOutputRecentLocation = () => {
         rightContainer.style.backdropFilter = "blur( 7px )";
         rightContainer.style.borderRadius = "10px";
         rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
+        weatherInfo.style.width = "65%";
     } else {
         searchContainer.style.height = "fit-content";
         recentSearch.style.display = 'none';
@@ -121,6 +123,7 @@ const updateOutputRecentLocation = () => {
         rightContainer.style.backdropFilter = "none";
         rightContainer.style.borderRadius = "0";
         rightContainer.style.border = "none";
+        weatherInfo.style.width = "100%";
     }
 };
 

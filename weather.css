@@ -273,8 +273,6 @@ button:hover #right-arrow {
     transform: translateY(-50%);
 }
 
-.delete-location
-
 @media only screen and (max-width: 600px) {
     #container {
         height: 65vh;
