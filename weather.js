@@ -99,7 +99,7 @@ const updateOutputRecentLocation = () => {
         locationData.forEach(
             ({id, locVal}) => {
                 list.innerHTML += `
-                    <li id="${id}" class="recent-location translate" style="position: relative;">
+                    <li id="${id}" class="recent-location translate" style="position: relative;" onclick="getWeather('${locVal}')">
                         ${locVal} 
                         <img title="Remove" id="delete-location" onclick="removeLocation('${id}')" src="images/x.png" alt="close-icon" width="20px" height="20px" style="padding: 0 5px; margin: 0; position: absolute; right: 0%; top: 50%">
                     </li>
@@ -124,6 +124,9 @@ const updateOutputRecentLocation = () => {
     }
 };
 
+function getWeather(city) {
+    fetchWeatherData(city);
+}
 
 function removeLocation(locationId) {
     const dataArrIndex = locationData.findIndex(
@@ -166,3 +169,47 @@ locationInput.addEventListener('keydown', (e) => {
 });
 
 updateOutputRecentLocation();
+
+
+
+
+
+
+function getUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function successCallback(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    // Call OpenWeatherMap API with latitude and longitude
+    fetchWeatherByCoordinates(lat, lon);
+}
+
+function errorCallback(error) {
+    console.error("Error fetching location: ", error);
+    alert("Unable to retrieve your location.");
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    getUserLocation();
+})
+
+async function fetchWeatherByCoordinates(lat, lon) {
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    
+    try {
+        const weatherResponse = await fetch(weatherUrl);
+        const weatherData = await weatherResponse.json();
+
+        const city = weatherData.name; // Get city name from the response
+        displayWeatherData(weatherData, city);
+    } catch (error) {
+        console.error("Error fetching weather data: ", error);
+    }
+}
