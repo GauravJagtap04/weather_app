@@ -107,10 +107,15 @@ const updateOutputRecentLocation = () => {
             }
         );
         searchContainer.style.height = "100%";
+        rightContainer.style.background = "rgba(184, 184, 184, 0.25)";
+        rightContainer.style.boxShadow = "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )";
+        rightContainer.style.backdropFilter = "blur( 7px )";
+        rightContainer.style.borderRadius = "10px";
+        rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
     } else {
-        recentSearch.style.display = 'none'; // Hide if no data
-        recentSearch.innerHTML = ""; // Clear content just in case
         searchContainer.style.height = "fit-content";
+        recentSearch.style.display = 'none';
+        recentSearch.innerHTML = "";
         rightContainer.style.background = "transparent";
         rightContainer.style.boxShadow = "none";
         rightContainer.style.backdropFilter = "none";
