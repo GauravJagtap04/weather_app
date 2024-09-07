@@ -9,6 +9,8 @@ const descSub = document.querySelector('.desc-sub');
 const locationInput = document.getElementById('location-input');
 const submitBtn = document.getElementById("submit-btn");
 const recentSearch = document.getElementById("recent-search");
+const searchContainer = document.getElementById("search-container");
+const rightContainer = document.getElementById("right-container");
 
 const locationData = JSON.parse(localStorage.getItem("data")) || [];
 let currentLocation = {};
@@ -104,10 +106,16 @@ const updateOutputRecentLocation = () => {
                 `;
             }
         );
+        searchContainer.style.height = "100%";
     } else {
         recentSearch.style.display = 'none'; // Hide if no data
         recentSearch.innerHTML = ""; // Clear content just in case
-        
+        searchContainer.style.height = "fit-content";
+        rightContainer.style.background = "transparent";
+        rightContainer.style.boxShadow = "none";
+        rightContainer.style.backdropFilter = "none";
+        rightContainer.style.borderRadius = "0";
+        rightContainer.style.border = "none";
     }
 };
 
