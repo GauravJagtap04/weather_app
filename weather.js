@@ -1,4 +1,12 @@
-const apiKey = config.SECRET_KEY;
+async function getApiKey() {
+    try {
+      const response = await fetch('/api/weather-proxy');
+      const data = await response.json();
+      return data.apiKey;
+    } catch (error) {
+      console.error('Error fetching API key:', error);
+    }
+}
 
 const weatherLogo = document.getElementById('weather-logo');
 const tempOutput = document.getElementById('temperature');
@@ -24,6 +32,8 @@ const formattedDate = date.toLocaleDateString('en-GB', {
 }).replace(/ /g, ' ');
 
 async function fetchWeatherData(city) {
+    const apiKey = await getApiKey();
+
     const geocodeUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
     
     try {
@@ -209,7 +219,6 @@ function successCallback(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
-    // Call OpenWeatherMap API with latitude and longitude
     fetchWeatherByCoordinates(lat, lon);
 }
 
@@ -223,6 +232,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 async function fetchWeatherByCoordinates(lat, lon) {
+    const apiKey = await getApiKey();
+
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
     
     try {
