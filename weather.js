@@ -1,5 +1,6 @@
 const apiKey = config.SECRET_KEY;
 
+const weatherLogo = document.getElementById('weather-logo');
 const tempOutput = document.getElementById('temperature');
 const locationSearched = document.querySelector('.location-searched');
 const locationCountry = document.querySelector('.location-country');
@@ -11,6 +12,7 @@ const submitBtn = document.getElementById("submit-btn");
 const recentSearch = document.getElementById("recent-search");
 const searchContainer = document.getElementById("search-container");
 const rightContainer = document.getElementById("right-container");
+const weatherIconDiv = document.getElementById("weather-icon-div");
 const weatherInfo = document.getElementById("weather-info");
 
 const locationData = JSON.parse(localStorage.getItem("data")) || [];
@@ -50,6 +52,7 @@ function displayWeatherData(data, city) {
     const temperature = Math.round(data.main.temp) + '°C';
     const description = data.weather[0].description;
     const country = data.sys.country;
+    const weatherLogoVal = data.weather[0].icon;
 
     tempOutput.textContent = temperature;
     locationSearched.textContent = city.charAt(0).toUpperCase() + city.slice(1);
@@ -57,6 +60,7 @@ function displayWeatherData(data, city) {
     locationDate.textContent = formattedDate;
     descMain.textContent = data.weather[0].main;
     descSub.textContent = description;
+    weatherIconDiv.innerHTML = `<img width="30px" height="30px" src="http://openweathermap.org/img/w/${weatherLogoVal}.png" alt="weather-icon" id="weather-logo"></img>`;
 }
 
 
@@ -80,14 +84,14 @@ const addRecentLocation = () => {
     }
     
     localStorage.setItem("data", JSON.stringify(locationData));
-    updateOutputRecentLocation();
 
     locationInput.value = "";
+    updateOutputRecentLocation();       
 };
 
 const updateOutputRecentLocation = () => {    
     if (locationData.length >= 1) {
-        recentSearch.style.display = 'block'; // Make it visible if there's data
+        recentSearch.style.display = 'block';
         recentSearch.innerHTML = `
             <span>
                 Recent search<hr>
@@ -107,13 +111,27 @@ const updateOutputRecentLocation = () => {
                 `;
             }
         );
-        searchContainer.style.height = "100%";
-        rightContainer.style.background = "rgba(184, 184, 184, 0.25)";
-        rightContainer.style.boxShadow = "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )";
-        rightContainer.style.backdropFilter = "blur( 7px )";
-        rightContainer.style.borderRadius = "10px";
-        rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
-        weatherInfo.style.width = "65%";
+
+        
+        if(window.innerWidth <= 600) {
+            searchContainer.style.height = "100%";
+            rightContainer.style.background = "transparent";
+            rightContainer.style.boxShadow = "0";
+            rightContainer.style.backdropFilter = "0";
+            rightContainer.style.borderRadius = "0";
+            rightContainer.style.border = "0";
+            return;
+        }
+        else if(window.innerWidth > 600) {
+            searchContainer.style.height = "100%";
+            rightContainer.style.background = "rgba(184, 184, 184, 0.25)";
+            rightContainer.style.boxShadow = "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )";
+            rightContainer.style.backdropFilter = "blur( 7px )";
+            rightContainer.style.borderRadius = "10px";
+            rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
+            weatherInfo.style.width = "65%";
+            return;
+        }
     } else {
         searchContainer.style.height = "fit-content";
         recentSearch.style.display = 'none';
@@ -123,7 +141,8 @@ const updateOutputRecentLocation = () => {
         rightContainer.style.backdropFilter = "none";
         rightContainer.style.borderRadius = "0";
         rightContainer.style.border = "none";
-        weatherInfo.style.width = "100%";
+        weatherInfo.style.width = "97%";
+        return;
     }
 };
 
