@@ -127,7 +127,7 @@ const updateOutputRecentLocation = () => {
             searchContainer.style.height = "100%";
             rightContainer.style.background = "transparent";
             rightContainer.style.boxShadow = "0";
-            rightContainer.style.backdropFilter = "0";
+            rightContainer.style.backdropFilter = "none";
             rightContainer.style.borderRadius = "0";
             rightContainer.style.border = "0";
             return;
