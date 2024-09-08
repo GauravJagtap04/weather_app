@@ -372,11 +372,11 @@ button:hover #right-arrow {
     #right-container {
         background: transparent;
         box-shadow: none;
-        backdrop-filter: blur( 7px );
-        -webkit-backdrop-filter: blur( 7px );
+        backdrop-filter: blur( 0px );
+        -webkit-backdrop-filter: blur( 0px );
         border-radius: 0;
         border: 0;
-        width: 100%;
+        width: fit-content;
         height: 100%;
     }
 

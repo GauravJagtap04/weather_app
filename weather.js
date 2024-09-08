@@ -125,6 +125,7 @@ const updateOutputRecentLocation = () => {
         
         if(window.innerWidth <= 600) {
             searchContainer.style.height = "100%";
+            weatherInfo.style.width = "fit-content";
             rightContainer.style.background = "transparent";
             rightContainer.style.boxShadow = "0";
             rightContainer.style.backdropFilter = "none";
