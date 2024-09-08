@@ -208,10 +208,12 @@ updateOutputRecentLocation();
 
 
 function getUserLocation() {
+    showLoadingScreen();
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
     } else {
         alert("Geolocation is not supported by this browser.");
+        hideLoadingScreen();
     }
 }
 
@@ -219,12 +221,13 @@ function successCallback(position) {
     const lat = position.coords.latitude;
     const lon = position.coords.longitude;
 
-    fetchWeatherByCoordinates(lat, lon);
+    fetchWeatherByCoordinates(lat, lon).finally(() => hideLoadingScreen());
 }
 
 function errorCallback(error) {
     console.error("Error fetching location: ", error);
     alert("Unable to retrieve your location.");
+    hideLoadingScreen();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -245,4 +248,18 @@ async function fetchWeatherByCoordinates(lat, lon) {
     } catch (error) {
         console.error("Error fetching weather data: ", error);
     }
+}
+
+
+
+
+
+const loadingScreen = document.getElementById('loading-screen');
+
+const showLoadingScreen = () => {
+    loadingScreen.style.display = 'flex';
+}
+
+const hideLoadingScreen = () => {
+    loadingScreen.style.display = 'none';
 }
