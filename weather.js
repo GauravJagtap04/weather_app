@@ -63,6 +63,8 @@ function displayWeatherData(data, city) {
     const description = data.weather[0].description;
     const country = data.sys.country;
     const weatherLogoVal = data.weather[0].icon;
+    const weatherId = data.weather[0].main;
+    const weatherIconClass = getWeatherIcon(weatherId);
 
     tempOutput.textContent = temperature;
     locationSearched.textContent = city.charAt(0).toUpperCase() + city.slice(1);
@@ -70,11 +72,29 @@ function displayWeatherData(data, city) {
     locationDate.textContent = formattedDate;
     descMain.textContent = data.weather[0].main;
     descSub.textContent = description;
-    weatherIconDiv.innerHTML = `<img width="30px" height="30px" src="http://openweathermap.org/img/w/${weatherLogoVal}.png" alt="weather-icon" id="weather-logo"></img>`;
+    weatherIconDiv.innerHTML = `<i class="fa-solid ${weatherIconClass}" style="font-size:30px;"></i>`;
 }
 
-
-
+const getWeatherIcon = weatherId => {
+    const weatherMapping = {
+        "Thunderstorm": "fa-cloud-bolt",
+        "Drizzle": "fa-cloud-rain",
+        "Rain": "fa-cloud-showers-heavy",
+        "Snow": "fa-snowflake",
+        "Clear": "fa-sun",
+        "Clouds": "fa-cloud",
+        "Mist": "fa-smog",
+        "Smoke": "fa-smog",
+        "Haze": "fa-smog",
+        "Dust": "fa-wind",
+        "Fog": "fa-smog",
+        "Sand": "fa-wind",
+        "Ash": "fa-smog",
+        "Squall": "fa-cloud-showers-heavy",
+        "Tornado": "fa-tornado"
+    };
+    return weatherMapping[weatherId] || "fa-cloud";
+};
 
 const addRecentLocation = () => {
     const locationValue = locationInput.value.trim();
@@ -125,7 +145,7 @@ const updateOutputRecentLocation = () => {
         
         if(window.innerWidth <= 600) {
             searchContainer.style.height = "100%";
-            weatherInfo.style.width = "fit-content";
+            weatherInfo.style.width = "100%";
             rightContainer.style.background = "transparent";
             rightContainer.style.boxShadow = "0";
             rightContainer.style.backdropFilter = "none";
