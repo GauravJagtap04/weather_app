@@ -1,6 +1,5 @@
 :root {
     --text-color: white;
-    --main-background: linear-gradient(45deg, #f1b4a2, #afbbbc, #686082);
     --background: black;
 }
 
@@ -42,7 +41,6 @@ body {
 
 #main {
     color: var(--text-color);
-    background: var(--main-background);
     font-family: poppins;
     width: 100%;
     height: 100vh;
