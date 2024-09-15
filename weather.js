@@ -62,7 +62,6 @@ function displayWeatherData(data, city) {
     const temperature = Math.round(data.main.temp) + '°C';
     const description = data.weather[0].description;
     const country = data.sys.country;
-    const weatherLogoVal = data.weather[0].icon;
     const weatherId = data.weather[0].main;
     const weatherIconClass = getWeatherIcon(weatherId);
 
@@ -73,7 +72,44 @@ function displayWeatherData(data, city) {
     descMain.textContent = data.weather[0].main;
     descSub.textContent = description;
     weatherIconDiv.innerHTML = `<i class="fa-solid ${weatherIconClass}" style="font-size:30px;"></i>`;
+    setWeatherBackground(weatherId);
 }
+
+
+
+
+function setWeatherBackground(weatherId) {
+    const gradientMapping = {
+        "Thunderstorm": "#283048, #859398",
+        "Drizzle": "#3a7bd5, #3a6073",
+        "Rain": "#00c6ff, #0072ff",
+        "Snow": "#83a4d4, #b6fbff",
+        "Clear": "#f7b733, #fc4a1a",
+        "Clouds": "#bdc3c7, #2c3e50",
+        "Mist": "#a1c4fd, #c2e9fb",
+        "Fog": "#757f9a, #d7dde8",
+        "Tornado": "#283048, #859398"
+    };
+
+    const backgroundImageMapping = {
+        "Thunderstorm": "url('images/thunderstorm-bg.jpg')",
+        "Drizzle": "url('images/drizzle-bg.jpg')",
+        "Rain": "url('images/rain-bg.jpg')",
+        "Snow": "url('images/snow-bg.jpg')",
+        "Clear": "url('images/clear-bg.jpg')",
+        "Clouds": "url('images/clouds-bg.jpg')",
+        "Mist": "url('images/mist-bg.jpg')",
+        "Fog": "url('images/fog-bg.jpg')",
+        "Tornado": "url('images/tornado-bg.jpg')"
+    };
+
+    const gradient = gradientMapping[weatherId] || "#1c92d2, #f2fcfe";
+
+    document.getElementById('main').style.background = `linear-gradient(${gradient})`;
+}
+
+
+
 
 const getWeatherIcon = weatherId => {
     const weatherMapping = {
