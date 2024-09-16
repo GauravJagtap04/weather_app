@@ -62,14 +62,10 @@ function displayWeatherData(data, city) {
     const weatherId = data.weather[0].main;
     const weatherIconClass = getWeatherIcon(weatherId);
 
-    const timestamp = data.dt;
-    const timezoneOffset = data.timezone;
-    const utcTime = timestamp * 1000;
+    const timestamp = data.dt * 1000; // Convert to milliseconds
+    const timezoneOffset = data.timezone * 1000; // Convert seconds to milliseconds
 
-    const utcDate = new Date(utcTime);
-
-    const localTime = new Date(utcDate.getTime() + (timezoneOffset * 1000));
-
+    const localTime = new Date(timestamp + timezoneOffset); // Correct the local time calculation
 
     const formattedDate = localTime.toLocaleDateString('en-GB', {
         month: 'short',
@@ -79,7 +75,7 @@ function displayWeatherData(data, city) {
     const formattedTime = localTime.toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit'
-    }).replace(/ /g, ' ');    
+    }).replace(/ /g, ' ');
 
     const hours = localTime.getHours();
     const isDay = hours >= 6 && hours < 18;
@@ -107,6 +103,7 @@ function displayWeatherData(data, city) {
 
 
 
+
 function setWeatherBackground(weatherId) {
     const gradientMapping = {
         "Thunderstorm": "#00000d, #b7cdd5",
@@ -117,7 +114,8 @@ function setWeatherBackground(weatherId) {
         "Clouds": "#bdc3c7, #2c3e50",
         "Mist": "#5b6e7a, #ddd8ca",
         "Fog": "#333d47, #b8c6cd",
-        "Tornado": "#0e121b, #a3b8c1"
+        "Tornado": "#0e121b, #a3b8c1",
+        "Haze": "#4286c6, #f3cba3",
     };
 
     const backgroundImageMapping = {
