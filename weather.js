@@ -82,7 +82,7 @@ function setWeatherBackground(weatherId) {
     const gradientMapping = {
         "Thunderstorm": "#00000d, #b7cdd5",
         "Drizzle": "#60717d, #ddcec0",
-        "Rain": "#3b444b, #3b444b",
+        "Rain": "#3b444b, #f9f3e5",
         "Snow": "#959a9d, #edefe9",
         "Clear": "#4286c6, #f3cba3",
         "Clouds": "#bdc3c7, #2c3e50",
