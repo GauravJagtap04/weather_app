@@ -22,14 +22,11 @@ const searchContainer = document.getElementById("search-container");
 const rightContainer = document.getElementById("right-container");
 const weatherIconDiv = document.getElementById("weather-icon-div");
 const weatherInfo = document.getElementById("weather-info");
+const dnIcon = document.getElementById("dn-icon");
+const time = document.getElementById("time");
 
 const locationData = JSON.parse(localStorage.getItem("data")) || [];
 let currentLocation = {};
-
-const date = new Date();
-const formattedDate = date.toLocaleDateString('en-GB', {
-  month: 'short', day: '2-digit'
-}).replace(/ /g, ' ');
 
 async function fetchWeatherData(city) {
     const apiKey = await getApiKey();
@@ -65,10 +62,37 @@ function displayWeatherData(data, city) {
     const weatherId = data.weather[0].main;
     const weatherIconClass = getWeatherIcon(weatherId);
 
+    const timestamp = data.dt;
+    const timezoneOffset = data.timezone;
+
+    const localTime = new Date((timestamp + timezoneOffset) * 1000);
+
+    const formattedDate = localTime.toLocaleDateString('en-GB', {
+        month: 'short',
+        day: '2-digit'
+    }).replace(/ /g, ' ');
+
+    const formattedTime = localTime.toLocaleTimeString('en-GB', {
+        hour: '2-digit',
+        minute: '2-digit'
+    }).replace(/ /g, ' ');
+
+    const hours = localTime.getUTCHours();
+    const isDay = hours >= 6 && hours < 18;
+
+    if (isDay) {
+        dnIcon.classList.remove('fa-moon');
+        dnIcon.classList.add('fa-sun');
+    } else {
+        dnIcon.classList.remove('fa-sun');
+        dnIcon.classList.add('fa-moon');
+    }
+
     tempOutput.textContent = temperature;
     locationSearched.textContent = city.charAt(0).toUpperCase() + city.slice(1);
     locationCountry.textContent = country;
     locationDate.textContent = formattedDate;
+    time.textContent = formattedTime;
     descMain.textContent = data.weather[0].main;
     descSub.textContent = description;
     weatherIconDiv.innerHTML = `<i class="fa-solid ${weatherIconClass}" style="font-size:30px;"></i>`;
