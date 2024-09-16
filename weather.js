@@ -80,15 +80,15 @@ function displayWeatherData(data, city) {
 
 function setWeatherBackground(weatherId) {
     const gradientMapping = {
-        "Thunderstorm": "#283048, #859398",
-        "Drizzle": "#3a7bd5, #3a6073",
-        "Rain": "#00c6ff, #0072ff",
-        "Snow": "#83a4d4, #b6fbff",
-        "Clear": "#f7b733, #fc4a1a",
+        "Thunderstorm": "#00000d, #b7cdd5",
+        "Drizzle": "#60717d, #ddcec0",
+        "Rain": "#3b444b, #3b444b",
+        "Snow": "#959a9d, #edefe9",
+        "Clear": "#4286c6, #f3cba3",
         "Clouds": "#bdc3c7, #2c3e50",
-        "Mist": "#a1c4fd, #c2e9fb",
-        "Fog": "#757f9a, #d7dde8",
-        "Tornado": "#283048, #859398"
+        "Mist": "#5b6e7a, #ddd8ca",
+        "Fog": "#333d47, #b8c6cd",
+        "Tornado": "#0e121b, #a3b8c1"
     };
 
     const backgroundImageMapping = {
@@ -96,7 +96,7 @@ function setWeatherBackground(weatherId) {
         "Drizzle": "url('images/bg/drizzle.jpeg')",
         "Rain": "url('images/bg/rain.jpeg')",
         "Snow": "url('images/bg/snow.jpeg')",
-        "Clear": "url('images/bg/clear.jpeg')",
+        "Clear": "url('images/bg/clear.jpg')",
         "Clouds": "url('images/bg/clouds.jpeg')",
         "Mist": "url('images/bg/mist.jpeg')",
         "Fog": "url('images/bg/fog.jpeg')",
