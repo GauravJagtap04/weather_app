@@ -59,6 +59,7 @@ body {
     border-radius: 20px 0 20px 0;
     box-shadow: 0px 0px 20px rgb(103, 95, 129);
     overflow: hidden;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.089), rgba(0, 0, 0, 0.089))
 }
 
 #results {
@@ -85,6 +86,7 @@ body {
     bottom: 0;
     width: 65%;
     color: var(--text-color);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
 #temperature {
