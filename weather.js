@@ -210,7 +210,7 @@ const updateOutputRecentLocation = () => {
         );
 
         
-        if(window.innerWidth <= 600) {
+        if(window.innerWidth <= 728) {
             searchContainer.style.height = "100%";
             weatherInfo.style.width = "100%";
             rightContainer.style.background = "transparent";
@@ -218,16 +218,18 @@ const updateOutputRecentLocation = () => {
             rightContainer.style.backdropFilter = "none";
             rightContainer.style.borderRadius = "0";
             rightContainer.style.border = "0";
+            time.style.left = "0";
+            time.style.top = "50px";
             return;
         }
-        else if(window.innerWidth > 600) {
+        else if(window.innerWidth > 728) {
             searchContainer.style.height = "100%";
             rightContainer.style.background = "rgba(184, 184, 184, 0.25)";
             rightContainer.style.boxShadow = "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )";
             rightContainer.style.backdropFilter = "blur( 7px )";
             rightContainer.style.borderRadius = "10px";
             rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
-            weatherInfo.style.width = "100%";
+            weatherInfo.style.width = "fit-content";
             return;
         }
     } else {
@@ -240,6 +242,8 @@ const updateOutputRecentLocation = () => {
         rightContainer.style.borderRadius = "0";
         rightContainer.style.border = "none";
         weatherInfo.style.width = "97%";
+        time.style.left = "0";
+        time.style.top = "50px";
         return;
     }
 };
