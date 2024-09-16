@@ -227,7 +227,7 @@ const updateOutputRecentLocation = () => {
             rightContainer.style.backdropFilter = "blur( 7px )";
             rightContainer.style.borderRadius = "10px";
             rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
-            weatherInfo.style.width = "65%";
+            weatherInfo.style.width = "100%";
             return;
         }
     } else {
