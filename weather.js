@@ -212,7 +212,7 @@ const updateOutputRecentLocation = () => {
         
         if(window.innerWidth <= 728) {
             searchContainer.style.height = "100%";
-            weatherInfo.style.width = "100%";
+            weatherInfo.style.width = "fit-content";
             rightContainer.style.background = "transparent";
             rightContainer.style.boxShadow = "0";
             rightContainer.style.backdropFilter = "none";
@@ -229,7 +229,9 @@ const updateOutputRecentLocation = () => {
             rightContainer.style.backdropFilter = "blur( 7px )";
             rightContainer.style.borderRadius = "10px";
             rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
-            weatherInfo.style.width = "fit-content";
+            weatherInfo.style.width = "100%";
+            time.style.right = "0";
+            time.style.top = "0";
             return;
         }
     } else {
