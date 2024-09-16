@@ -104,7 +104,7 @@ function setWeatherBackground(weatherId) {
     };
 
     const gradient = gradientMapping[weatherId] || "#1c92d2, #f2fcfe";
-    const backgroundImage = backgroundImageMapping[weatherId] || "url('images/default-bg.jpg')";
+    const backgroundImage = backgroundImageMapping[weatherId] || "url('images/bg/clouds.jpeg')";
 
     document.getElementById('main').style.background = `linear-gradient(${gradient})`;
     document.getElementById('container').style.backgroundImage = backgroundImage;
