@@ -65,8 +65,9 @@ function displayWeatherData(data, city) {
     const timestamp = data.dt;
     const timezoneOffset = data.timezone;
 
-    const localTime = new Date((timestamp + timezoneOffset) * 1000);
-
+    const utcTime = new Date(timestamp * 1000);
+    const localTime = new Date(utcTime.getTime() + (timezoneOffset * 1000));
+    
     const formattedDate = localTime.toLocaleDateString('en-GB', {
         month: 'short',
         day: '2-digit'
