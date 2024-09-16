@@ -62,21 +62,21 @@ function displayWeatherData(data, city) {
     const weatherId = data.weather[0].main;
     const weatherIconClass = getWeatherIcon(weatherId);
 
-   const unixTime = data.dt + data.timezone;
-   const dataObj = new Date(unixTime * 1000);
-   const utcString = dataObj.toUTCString();
+    const unixTime = data.dt + data.timezone;
+    const dataObj = new Date(unixTime * 1000);
 
-    const formattedDate = utcString.toLocaleDateString('en-GB', {
+    // Format the date and time using the `dataObj`
+    const formattedDate = dataObj.toLocaleDateString('en-GB', {
         month: 'short',
         day: '2-digit'
     }).replace(/ /g, ' ');
 
-    const formattedTime = utcString.toLocaleTimeString('en-GB', {
+    const formattedTime = dataObj.toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit'
     }).replace(/ /g, ' ');
 
-    const hours = utcString.getUTCHours();
+    const hours = dataObj.getUTCHours();
     const isDay = hours >= 6 && hours < 18;
 
     if (isDay) {
@@ -97,6 +97,7 @@ function displayWeatherData(data, city) {
     weatherIconDiv.innerHTML = `<i class="fa-solid ${weatherIconClass}" style="font-size:30px;"></i>`;
     setWeatherBackground(weatherId);
 }
+
 
 
 
