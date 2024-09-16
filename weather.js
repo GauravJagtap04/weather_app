@@ -62,29 +62,23 @@ function displayWeatherData(data, city) {
     const weatherId = data.weather[0].main;
     const weatherIconClass = getWeatherIcon(weatherId);
 
-    // Get the timestamp (UTC) and timezone offset (seconds) from the API
-    const timestamp = data.dt;
-    const timezoneOffset = data.timezone; // offset in seconds
+   const unixTime = data.dt + data.timezone;
+   const dataObj = new Date(unixTime * 1000);
+   const utcString = dataObj.toUTCString();
 
-    // Convert the timestamp to UTC (ignores your local time)
-    const utcTime = new Date((timestamp + timezoneOffset) * 1000); // Adding offset to timestamp
-
-    // Format date and time to display it for the correct city timezone
-    const formattedDate = utcTime.toLocaleDateString('en-GB', {
+    const formattedDate = utcString.toLocaleDateString('en-GB', {
         month: 'short',
         day: '2-digit'
     }).replace(/ /g, ' ');
 
-    const formattedTime = utcTime.toLocaleTimeString('en-GB', {
+    const formattedTime = utcString.toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit'
     }).replace(/ /g, ' ');
 
-    // Determine if it's day or night based on local time in the queried city
-    const hours = utcTime.getUTCHours(); // Since UTC is universal, you can compare UTC hours
+    const hours = utcString.getUTCHours();
     const isDay = hours >= 6 && hours < 18;
 
-    // Update the sun/moon icon based on the time of the city, not your local time
     if (isDay) {
         dnIcon.classList.remove('fa-moon');
         dnIcon.classList.add('fa-sun');
@@ -93,7 +87,6 @@ function displayWeatherData(data, city) {
         dnIcon.classList.add('fa-moon');
     }
 
-    // Update the UI with weather data
     tempOutput.textContent = temperature;
     locationSearched.textContent = city.charAt(0).toUpperCase() + city.slice(1);
     locationCountry.textContent = country;
