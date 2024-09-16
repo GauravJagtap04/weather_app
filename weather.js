@@ -67,7 +67,7 @@ function displayWeatherData(data, city) {
 
     const utcTime = new Date(timestamp * 1000);
     const localTime = new Date(utcTime.getTime() + (timezoneOffset * 1000));
-    
+
     const formattedDate = localTime.toLocaleDateString('en-GB', {
         month: 'short',
         day: '2-digit'
@@ -78,7 +78,7 @@ function displayWeatherData(data, city) {
         minute: '2-digit'
     }).replace(/ /g, ' ');
 
-    const hours = localTime.getUTCHours();
+    const hours = localTime.getHours();
     const isDay = hours >= 6 && hours < 18;
 
     if (isDay) {
@@ -99,6 +99,7 @@ function displayWeatherData(data, city) {
     weatherIconDiv.innerHTML = `<i class="fa-solid ${weatherIconClass}" style="font-size:30px;"></i>`;
     setWeatherBackground(weatherId);
 }
+
 
 
 
