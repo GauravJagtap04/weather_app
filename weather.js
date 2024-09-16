@@ -92,20 +92,22 @@ function setWeatherBackground(weatherId) {
     };
 
     const backgroundImageMapping = {
-        "Thunderstorm": "url('images/thunderstorm-bg.jpg')",
-        "Drizzle": "url('images/drizzle-bg.jpg')",
-        "Rain": "url('images/rain-bg.jpg')",
-        "Snow": "url('images/snow-bg.jpg')",
-        "Clear": "url('images/clear-bg.jpg')",
-        "Clouds": "url('images/clouds-bg.jpg')",
-        "Mist": "url('images/mist-bg.jpg')",
-        "Fog": "url('images/fog-bg.jpg')",
-        "Tornado": "url('images/tornado-bg.jpg')"
+        "Thunderstorm": "url('images/bg/thunderstorm.jpeg')",
+        "Drizzle": "url('images/bg/drizzle.jpeg')",
+        "Rain": "url('images/bg/rain.jpeg')",
+        "Snow": "url('images/bg/snow.jpeg')",
+        "Clear": "url('images/bg/clear.jpeg')",
+        "Clouds": "url('images/bg/clouds.jpeg')",
+        "Mist": "url('images/bg/mist.jpeg')",
+        "Fog": "url('images/bg/fog.jpeg')",
+        "Tornado": "url('images/bg/tornado.jpeg')"
     };
 
     const gradient = gradientMapping[weatherId] || "#1c92d2, #f2fcfe";
+    const backgroundImage = backgroundImageMapping[weatherId] || "url('images/default-bg.jpg')";
 
     document.getElementById('main').style.background = `linear-gradient(${gradient})`;
+    document.getElementById('container').style.backgroundImage = backgroundImage;
 }
 
 
