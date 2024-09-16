@@ -62,24 +62,29 @@ function displayWeatherData(data, city) {
     const weatherId = data.weather[0].main;
     const weatherIconClass = getWeatherIcon(weatherId);
 
-    const timestamp = data.dt * 1000; // Convert to milliseconds
-    const timezoneOffset = data.timezone * 1000; // Convert seconds to milliseconds
+    // Get the timestamp (UTC) and timezone offset (seconds) from the API
+    const timestamp = data.dt;
+    const timezoneOffset = data.timezone; // offset in seconds
 
-    const localTime = new Date(timestamp + timezoneOffset); // Correct the local time calculation
+    // Convert the timestamp to UTC (ignores your local time)
+    const utcTime = new Date((timestamp + timezoneOffset) * 1000); // Adding offset to timestamp
 
-    const formattedDate = localTime.toLocaleDateString('en-GB', {
+    // Format date and time to display it for the correct city timezone
+    const formattedDate = utcTime.toLocaleDateString('en-GB', {
         month: 'short',
         day: '2-digit'
     }).replace(/ /g, ' ');
 
-    const formattedTime = localTime.toLocaleTimeString('en-GB', {
+    const formattedTime = utcTime.toLocaleTimeString('en-GB', {
         hour: '2-digit',
         minute: '2-digit'
     }).replace(/ /g, ' ');
 
-    const hours = localTime.getHours();
+    // Determine if it's day or night based on local time in the queried city
+    const hours = utcTime.getUTCHours(); // Since UTC is universal, you can compare UTC hours
     const isDay = hours >= 6 && hours < 18;
 
+    // Update the sun/moon icon based on the time of the city, not your local time
     if (isDay) {
         dnIcon.classList.remove('fa-moon');
         dnIcon.classList.add('fa-sun');
@@ -88,6 +93,7 @@ function displayWeatherData(data, city) {
         dnIcon.classList.add('fa-moon');
     }
 
+    // Update the UI with weather data
     tempOutput.textContent = temperature;
     locationSearched.textContent = city.charAt(0).toUpperCase() + city.slice(1);
     locationCountry.textContent = country;
@@ -98,6 +104,7 @@ function displayWeatherData(data, city) {
     weatherIconDiv.innerHTML = `<i class="fa-solid ${weatherIconClass}" style="font-size:30px;"></i>`;
     setWeatherBackground(weatherId);
 }
+
 
 
 
