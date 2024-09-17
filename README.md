@@ -2,9 +2,10 @@
 The Weather App is a responsive website that provides real-time weather updates for any location. This project is developed using HTML, CSS, and JavaScript, integrating the OpenWeatherMap API to fetch and display weather information.
 
 ## Preview
-![Home page UI](https://github.com/user-attachments/assets/18e7617e-d5e9-4144-9f7a-51dccb8524e1)
-![Home page UI with added locations](https://github.com/user-attachments/assets/6cd7e775-2d9a-4a59-a800-20b2a9b5bd39)
-![Mobile view](https://github.com/user-attachments/assets/c994b235-cc42-40d0-a64a-4703c0a18a30)
+![home-page](https://github.com/user-attachments/assets/f3fb7a5f-ccc9-4f4b-8004-79ecf838abf8)
+![home-page-with-added-recent-locations](https://github.com/user-attachments/assets/76ae73fc-b8c9-48f2-ab21-99f701508076)
+![weather-app-mobile-view](https://github.com/user-attachments/assets/1b36a206-7e3b-49e6-8853-6654949f7239)
+
 
 ## Features
 ### 🏙 Search by City
