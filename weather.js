@@ -1,10 +1,14 @@
 async function getApiKey() {
-    try {
-      const response = await fetch('/api/weather-proxy');
-      const data = await response.json();
-      return data.apiKey;
-    } catch (error) {
-      console.error('Error fetching API key:', error);
+    if (window.location.hostname === 'localhost') {
+        return config.apiKey;
+    } else {
+        try {
+            const response = await fetch('/api/weather-proxy');
+            const data = await response.json();
+            return data.apiKey;
+        } catch (error) {
+            console.error('Error fetching API key:', error);
+        }
     }
 }
 
@@ -78,15 +82,6 @@ function displayWeatherData(data, city) {
 
     const hours = dataObj.getUTCHours();
     const isDay = hours >= 6 && hours < 18;
-
-    if (isDay) {
-        dnIcon.classList.remove('fa-moon');
-        dnIcon.classList.add('fa-sun');
-    } else {
-        dnIcon.classList.remove('fa-sun');
-        dnIcon.classList.add('fa-moon');
-    }
-
     tempOutput.textContent = temperature;
     locationSearched.textContent = city.charAt(0).toUpperCase() + city.slice(1);
     locationCountry.textContent = country;
@@ -211,43 +206,56 @@ const updateOutputRecentLocation = () => {
         
         if(window.innerWidth <= 728) {
             searchContainer.style.height = "100%";
-            weatherInfo.style.width = "fit-content";
+            weatherInfo.style.width = "94%";
             rightContainer.style.background = "transparent";
             rightContainer.style.boxShadow = "0";
             rightContainer.style.backdropFilter = "none";
             rightContainer.style.borderRadius = "0";
             rightContainer.style.border = "0";
-            time.style.left = "0";
-            time.style.top = "50px";
             return;
         }
         else if(window.innerWidth > 728) {
             searchContainer.style.height = "100%";
-            rightContainer.style.background = "rgba(184, 184, 184, 0.25)";
+            rightContainer.style.background = "rgba(61, 61, 61, 0.349)";
             rightContainer.style.boxShadow = "0 8px 32px 0 rgba( 31, 38, 135, 0.37 )";
             rightContainer.style.backdropFilter = "blur( 7px )";
-            rightContainer.style.borderRadius = "10px";
+            rightContainer.style.borderRadius = "10px 0 0 10px";
             rightContainer.style.border = "1px solid rgba( 255, 255, 255, 0.18 )";
-            weatherInfo.style.width = "100%";
-            time.style.right = "0";
-            time.style.top = "0";
+            weatherInfo.style.width = "96%";
+            
             return;
         }
     } else {
-        searchContainer.style.height = "fit-content";
-        recentSearch.style.display = 'none';
-        recentSearch.innerHTML = "";
-        rightContainer.style.background = "transparent";
-        rightContainer.style.boxShadow = "none";
-        rightContainer.style.backdropFilter = "none";
-        rightContainer.style.borderRadius = "0";
-        rightContainer.style.border = "none";
-        weatherInfo.style.width = "97%";
-        time.style.left = "0";
-        time.style.top = "50px";
-        return;
+        if(window.innerWidth <= 728) {
+            searchContainer.style.height = "fit-content";
+            recentSearch.style.display = 'none';
+            recentSearch.innerHTML = "";
+            rightContainer.style.background = "transparent";
+            rightContainer.style.boxShadow = "none";
+            rightContainer.style.backdropFilter = "none";
+            rightContainer.style.borderRadius = "0";
+            rightContainer.style.border = "none";
+            weatherInfo.style.width = "94%";
+            return;
+        } else if(window.innerWidth > 728) {
+            searchContainer.style.height = "fit-content";
+            recentSearch.style.display = 'none';
+            recentSearch.innerHTML = "";
+            rightContainer.style.background = "transparent";
+            rightContainer.style.boxShadow = "none";
+            rightContainer.style.backdropFilter = "none";
+            rightContainer.style.borderRadius = "0";
+            rightContainer.style.border = "none";
+            weatherInfo.style.width = "138%";
+            return;
+        }
+        
     }
 };
+
+window.addEventListener('resize', function() {
+    updateOutputRecentLocation();
+});
 
 function getWeather(city) {
     fetchWeatherData(city);
@@ -284,13 +292,17 @@ const submit = async () => {
 
 submitBtn.addEventListener('click', () => {
     submit();
+
+    updateOutputRecentLocation();
 });
 
 locationInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
         e.preventDefault();
         submit();
-    }   
+    }
+
+    updateOutputRecentLocation();
 });
 
 updateOutputRecentLocation();

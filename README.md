@@ -19,8 +19,8 @@ The app saves recent search results using LocalStorage, allowing users to quickl
 ### 📱 Responsive Design
 The app is built with responsive CSS, ensuring a seamless experience across devices of all screen sizes.
 
-### 🌦 Dynamic Icons
-Weather conditions are visually represented with icons for clear, cloudy, rainy, and other weather types.
+### 🌦 Dynamic Backgrounds and Icons
+Weather conditions are visually represented with icons and backgrounds for clear, cloudy, rainy, and other weather types.
 
 ### ✨ Clean and Intuitive UI
 The interface is designed for easy navigation with a minimalistic and modern look.

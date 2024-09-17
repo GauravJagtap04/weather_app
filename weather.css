@@ -59,7 +59,8 @@ body {
     border-radius: 20px 0 20px 0;
     box-shadow: 0px 0px 20px rgb(103, 95, 129);
     overflow: hidden;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.089), rgba(0, 0, 0, 0.089))
+    filter: brightness(0.95);
+    min-width: 350px;
 }
 
 #results {
@@ -77,13 +78,15 @@ body {
 #weather-logo {
     padding: 60px;
     scale: 300%;
-    color: var(--text-color)
+    color: var(--text-color);
+    margin: auto;
 }
 
 #time {
     position: absolute;
-    right: 0;
-    top: 0;
+    left: 0;
+    top: 50px;
+    width: max-content;
     margin: 20px 20px;
     text-shadow: 1px 1px 3px rgba(32, 32, 32, 0.575);
 }
@@ -96,7 +99,7 @@ body {
     bottom: 0;
     width: 100%;
     color: var(--text-color);
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.541);
+    text-shadow: 0px 0px 8px rgba(51, 51, 51, 0.712);
 }
 
 #temperature {
@@ -154,13 +157,14 @@ body {
     width: 30%;
     height: 100%;
     overflow: hidden;
+    border-radius: 10px 0 0 10px;
 }
 
 #right-container {
-    background: rgba(179, 179, 179, 0.438);
+    background: rgba(61, 61, 61, 0.349);
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 7px );
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
     width: 100%;
     height: 100%;
@@ -192,7 +196,8 @@ input {
 span {
     padding: 0;
     margin: 0;
-    color: #4e4e4e;
+    color: #ffffffe1;
+    text-shadow: 1px 1px 3px #2e2e2ed5;
     opacity: 80%;
 }
 
@@ -257,7 +262,7 @@ button:hover #right-arrow {
 }
 
 .recent-location {
-    background: rgba(255, 255, 255, 0.123);
+    background: rgba(255, 255, 255, 0.452);
     backdrop-filter: blur( 3px );
     -webkit-backdrop-filter: blur( 3px );
     border-radius: 10px;
@@ -284,6 +289,10 @@ button:hover #right-arrow {
 
 .recent-location.translate > img {
     transform: translateY(-50%);
+}
+
+ul {
+    overflow: visible;
 }
 
 @media only screen and (max-width: 600px) {
