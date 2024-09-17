@@ -1,0 +1,22 @@
+{
+    "name": "Weather App",
+    "short_name": "Weather",
+    "description": "A weather app that displays the current weather.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1f2937",
+    "theme_color": "#1f2937",
+    "icons": [
+      {
+        "src": "/images/icon.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
