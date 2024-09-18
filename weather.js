@@ -119,7 +119,7 @@ function setWeatherBackground(weatherId) {
         "Drizzle": "url('images/bg/drizzle.webp')",
         "Rain": "url('images/bg/rain.webp')",
         "Snow": "url('images/bg/snow.webp')",
-        "Clear": "url('images/bg/clear.jpg')",
+        "Clear": "url('images/bg/clear.webp')",
         "Clouds": "url('images/bg/clouds.webp')",
         "Mist": "url('images/bg/mist.webp')",
         "Fog": "url('images/bg/fog.webp')",
