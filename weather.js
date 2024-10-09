@@ -192,9 +192,9 @@ const updateOutputRecentLocation = () => {
 
     locationData.forEach(({ id, locVal }) => {
       list.innerHTML += `
-                    <li id="${id}" class="recent-location translate" style="position: relative;" onclick="getWeather('${locVal}')">
-                        ${locVal} 
-                        <img title="Remove" id="delete-location" onclick="removeLocation('${id}')" src="images/x.png" alt="close-icon" width="20px" height="20px" style="padding: 0 5px; margin: 0; position: absolute; right: 0%; top: 50%">
+                    <li id="${id}" class="recent-location translate" style="position: relative;">
+                        <span onclick="getWeather('${locVal}')" style="cursor: pointer;">${locVal}</span>
+                        <img title="Remove" id="delete-location" onclick="removeLocation('${id}')" src="images/x.png" alt="close-icon" width="20px" height="20px" style="padding: 0 5px; margin: 0; cursor: pointer; position: absolute; right: 0%; top: 50%; z-index: 10;">
                     </li>
                 `;
     });
